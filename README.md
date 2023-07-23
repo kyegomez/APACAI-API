@@ -18,6 +18,14 @@ You can find usage examples for the APACAI Python library in our [API reference]
 
 
 
+* Example
+
+```python
+from apacai import Andromeda
+
+Andromeda("Create a report on these metrics", api_key="sk-lee2e829382983")
+```
+
 ## Installation
 
 You don't need this source code unless you want to modify the package. If you just
