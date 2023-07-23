@@ -2,7 +2,7 @@
 name = "apacai"
 version = "0.1.0"
 description = "Python client library for the APACAI API"
-authors = ["APACAI kye@apac.ai"]
+authors = ["APACAI <kye@apac.ai>"]
 homepage = "https://github.com/kyegomez/APACAI-API.git"
 license = "MIT"
 
