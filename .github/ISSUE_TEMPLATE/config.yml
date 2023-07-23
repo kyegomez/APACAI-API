@@ -1,0 +1,7 @@
+blank_issues_enabled: false
+contact_links:
+  - name: APACAI support
+    url: https://help.apacai.com/
+    about: |
+      Please only file issues here that you believe represent actual bugs or feature requests for the APACAI Python library.
+      If you're having general trouble with the APACAI API, ChatGPT, etc, please visit our help center to get support.
