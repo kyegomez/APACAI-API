@@ -31,7 +31,7 @@ else:
 
 import apacai
 from apacai import error, util, version
-from apacai.openai_response import OpenAIResponse
+from apacai.openai_response import ApacAIResponse
 from apacai.util import ApiType
 
 TIMEOUT_SECS = 600
@@ -153,13 +153,13 @@ class APIRequestor:
             str += " (%s)" % (info["url"],)
         return str
 
-    def _check_polling_response(self, response: OpenAIResponse, predicate: Callable[[OpenAIResponse], bool]):
+    def _check_polling_response(self, response: ApacAIResponse, predicate: Callable[[ApacAIResponse], bool]):
         if not predicate(response):
             return
         error_data = response.data['error']
         message = error_data.get('message', 'Operation failed')
         code = error_data.get('code')
-        raise error.OpenAIError(message=message, code=code)
+        raise error.ApacAIError(message=message, code=code)
 
     def _poll(
         self,
@@ -171,7 +171,7 @@ class APIRequestor:
         headers = None,
         interval = None,
         delay = None
-    ) -> Tuple[Iterator[OpenAIResponse], bool, str]:
+    ) -> Tuple[Iterator[ApacAIResponse], bool, str]:
         if delay:
             time.sleep(delay)
 
@@ -199,7 +199,7 @@ class APIRequestor:
         headers = None,
         interval = None,
         delay = None
-    ) -> Tuple[Iterator[OpenAIResponse], bool, str]:
+    ) -> Tuple[Iterator[ApacAIResponse], bool, str]:
         if delay:
             await asyncio.sleep(delay)
 
@@ -228,7 +228,7 @@ class APIRequestor:
         stream: Literal[True],
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[Iterator[OpenAIResponse], bool, str]:
+    ) -> Tuple[Iterator[ApacAIResponse], bool, str]:
         pass
 
     @overload
@@ -243,7 +243,7 @@ class APIRequestor:
         stream: Literal[True],
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[Iterator[OpenAIResponse], bool, str]:
+    ) -> Tuple[Iterator[ApacAIResponse], bool, str]:
         pass
 
     @overload
@@ -257,7 +257,7 @@ class APIRequestor:
         stream: Literal[False] = ...,
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[OpenAIResponse, bool, str]:
+    ) -> Tuple[ApacAIResponse, bool, str]:
         pass
 
     @overload
@@ -271,7 +271,7 @@ class APIRequestor:
         stream: bool = ...,
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[Union[OpenAIResponse, Iterator[OpenAIResponse]], bool, str]:
+    ) -> Tuple[Union[ApacAIResponse, Iterator[ApacAIResponse]], bool, str]:
         pass
 
     def request(
@@ -284,7 +284,7 @@ class APIRequestor:
         stream: bool = False,
         request_id: Optional[str] = None,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = None,
-    ) -> Tuple[Union[OpenAIResponse, Iterator[OpenAIResponse]], bool, str]:
+    ) -> Tuple[Union[ApacAIResponse, Iterator[ApacAIResponse]], bool, str]:
         result = self.request_raw(
             method.lower(),
             url,
@@ -309,7 +309,7 @@ class APIRequestor:
         stream: Literal[True],
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[AsyncGenerator[OpenAIResponse, None], bool, str]:
+    ) -> Tuple[AsyncGenerator[ApacAIResponse, None], bool, str]:
         pass
 
     @overload
@@ -324,7 +324,7 @@ class APIRequestor:
         stream: Literal[True],
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[AsyncGenerator[OpenAIResponse, None], bool, str]:
+    ) -> Tuple[AsyncGenerator[ApacAIResponse, None], bool, str]:
         pass
 
     @overload
@@ -338,7 +338,7 @@ class APIRequestor:
         stream: Literal[False] = ...,
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[OpenAIResponse, bool, str]:
+    ) -> Tuple[ApacAIResponse, bool, str]:
         pass
 
     @overload
@@ -352,7 +352,7 @@ class APIRequestor:
         stream: bool = ...,
         request_id: Optional[str] = ...,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = ...,
-    ) -> Tuple[Union[OpenAIResponse, AsyncGenerator[OpenAIResponse, None]], bool, str]:
+    ) -> Tuple[Union[ApacAIResponse, AsyncGenerator[ApacAIResponse, None]], bool, str]:
         pass
 
     async def arequest(
@@ -365,7 +365,7 @@ class APIRequestor:
         stream: bool = False,
         request_id: Optional[str] = None,
         request_timeout: Optional[Union[float, Tuple[float, float]]] = None,
-    ) -> Tuple[Union[OpenAIResponse, AsyncGenerator[OpenAIResponse, None]], bool, str]:
+    ) -> Tuple[Union[ApacAIResponse, AsyncGenerator[ApacAIResponse, None]], bool, str]:
         ctx = aiohttp_session()
         session = await ctx.__aenter__()
         try:
@@ -686,7 +686,7 @@ class APIRequestor:
 
     def _interpret_response(
         self, result: requests.Response, stream: bool
-    ) -> Tuple[Union[OpenAIResponse, Iterator[OpenAIResponse]], bool]:
+    ) -> Tuple[Union[ApacAIResponse, Iterator[ApacAIResponse]], bool]:
         """Returns the response(s) and a bool indicating whether it is a stream."""
         if stream and "text/event-stream" in result.headers.get("Content-Type", ""):
             return (
@@ -708,7 +708,7 @@ class APIRequestor:
 
     async def _interpret_async_response(
         self, result: aiohttp.ClientResponse, stream: bool
-    ) -> Tuple[Union[OpenAIResponse, AsyncGenerator[OpenAIResponse, None]], bool]:
+    ) -> Tuple[Union[ApacAIResponse, AsyncGenerator[ApacAIResponse, None]], bool]:
         """Returns the response(s) and a bool indicating whether it is a stream."""
         if stream and "text/event-stream" in result.headers.get("Content-Type", ""):
             return (
@@ -736,10 +736,10 @@ class APIRequestor:
 
     def _interpret_response_line(
         self, rbody: str, rcode: int, rheaders, stream: bool
-    ) -> OpenAIResponse:
+    ) -> ApacAIResponse:
         # HTTP 204 response code does not have any content in the body.
         if rcode == 204:
-            return OpenAIResponse(None, rheaders)
+            return ApacAIResponse(None, rheaders)
 
         if rcode == 503:
             raise error.ServiceUnavailableError(
@@ -757,7 +757,7 @@ class APIRequestor:
             raise error.APIError(
                 f"HTTP code {rcode} from API ({rbody})", rbody, rcode, headers=rheaders
             ) from e
-        resp = OpenAIResponse(data, rheaders)
+        resp = ApacAIResponse(data, rheaders)
         # In the future, we might add a "status" parameter to errors
         # to better handle the "error while streaming" case.
         stream_error = stream and "error" in resp.data

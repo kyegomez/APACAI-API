@@ -1,7 +1,7 @@
 import apacai
 
 
-class OpenAIError(Exception):
+class ApacAIError(Exception):
     def __init__(
         self,
         message=None,
@@ -11,7 +11,7 @@ class OpenAIError(Exception):
         headers=None,
         code=None,
     ):
-        super(OpenAIError, self).__init__(message)
+        super(ApacAIError, self).__init__(message)
 
         if http_body and hasattr(http_body, "decode"):
             try:
@@ -69,19 +69,19 @@ class OpenAIError(Exception):
         )
 
 
-class APIError(OpenAIError):
+class APIError(ApacAIError):
     pass
 
 
-class TryAgain(OpenAIError):
+class TryAgain(ApacAIError):
     pass
 
 
-class Timeout(OpenAIError):
+class Timeout(ApacAIError):
     pass
 
 
-class APIConnectionError(OpenAIError):
+class APIConnectionError(ApacAIError):
     def __init__(
         self,
         message,
@@ -98,7 +98,7 @@ class APIConnectionError(OpenAIError):
         self.should_retry = should_retry
 
 
-class InvalidRequestError(OpenAIError):
+class InvalidRequestError(ApacAIError):
     def __init__(
         self,
         message,
@@ -136,27 +136,27 @@ class InvalidRequestError(OpenAIError):
         )
 
 
-class AuthenticationError(OpenAIError):
+class AuthenticationError(ApacAIError):
     pass
 
 
-class PermissionError(OpenAIError):
+class PermissionError(ApacAIError):
     pass
 
 
-class RateLimitError(OpenAIError):
+class RateLimitError(ApacAIError):
     pass
 
 
-class ServiceUnavailableError(OpenAIError):
+class ServiceUnavailableError(ApacAIError):
     pass
 
 
-class InvalidAPIType(OpenAIError):
+class InvalidAPIType(ApacAIError):
     pass
 
 
-class SignatureVerificationError(OpenAIError):
+class SignatureVerificationError(ApacAIError):
     def __init__(self, message, sig_header, http_body=None):
         super(SignatureVerificationError, self).__init__(message, http_body)
         self.sig_header = sig_header

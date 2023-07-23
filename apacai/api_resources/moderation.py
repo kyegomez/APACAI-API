@@ -1,9 +1,9 @@
 from typing import List, Optional, Union
 
-from apacai.openai_object import OpenAIObject
+from apacai.openai_object import ApacAIObject
 
 
-class Moderation(OpenAIObject):
+class Moderation(ApacAIObject):
     VALID_MODEL_NAMES: List[str] = ["text-moderation-stable", "text-moderation-latest"]
 
     @classmethod

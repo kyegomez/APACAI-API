@@ -106,10 +106,10 @@ def convert_to_openai_object(
     engine=None,
     plain_old_data=False,
 ):
-    # If we get a OpenAIResponse, we'll want to return a OpenAIObject.
+    # If we get a ApacAIResponse, we'll want to return a ApacAIObject.
 
     response_ms: Optional[int] = None
-    if isinstance(resp, apacai.openai_response.OpenAIResponse):
+    if isinstance(resp, apacai.openai_response.ApacAIResponse):
         organization = resp.organization
         response_ms = resp.response_ms
         resp = resp.data
@@ -124,16 +124,16 @@ def convert_to_openai_object(
             for i in resp
         ]
     elif isinstance(resp, dict) and not isinstance(
-        resp, apacai.openai_object.OpenAIObject
+        resp, apacai.openai_object.ApacAIObject
     ):
         resp = resp.copy()
         klass_name = resp.get("object")
         if isinstance(klass_name, str):
             klass = get_object_classes().get(
-                klass_name, apacai.openai_object.OpenAIObject
+                klass_name, apacai.openai_object.ApacAIObject
             )
         else:
-            klass = apacai.openai_object.OpenAIObject
+            klass = apacai.openai_object.ApacAIObject
 
         return klass.construct_from(
             resp,
@@ -148,17 +148,17 @@ def convert_to_openai_object(
 
 
 def convert_to_dict(obj):
-    """Converts a OpenAIObject back to a regular dict.
+    """Converts a ApacAIObject back to a regular dict.
 
-    Nested OpenAIObjects are also converted back to regular dicts.
+    Nested ApacAIObjects are also converted back to regular dicts.
 
-    :param obj: The OpenAIObject to convert.
+    :param obj: The ApacAIObject to convert.
 
-    :returns: The OpenAIObject as a dict.
+    :returns: The ApacAIObject as a dict.
     """
     if isinstance(obj, list):
         return [convert_to_dict(i) for i in obj]
-    # This works by virtue of the fact that OpenAIObjects _are_ dicts. The dict
+    # This works by virtue of the fact that ApacAIObjects _are_ dicts. The dict
     # comprehension returns a regular dict and recursively applies the
     # conversion to each value.
     elif isinstance(obj, dict):

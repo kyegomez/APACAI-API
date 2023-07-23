@@ -30,7 +30,7 @@ EXCEPTION_TEST_CASES = [
         json_body={"text": "iono some text"},
         headers={"request-id": "asasd"},
     ),
-    apacai.error.OpenAIError(),
+    apacai.error.ApacAIError(),
 ]
 
 

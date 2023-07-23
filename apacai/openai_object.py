@@ -4,11 +4,11 @@ from typing import Optional, Tuple, Union
 
 import apacai
 from apacai import api_requestor, util
-from apacai.openai_response import OpenAIResponse
+from apacai.openai_response import ApacAIResponse
 from apacai.util import ApiType
 
 
-class OpenAIObject(dict):
+class ApacAIObject(dict):
     api_base_override = None
 
     def __init__(
@@ -23,7 +23,7 @@ class OpenAIObject(dict):
         engine=None,
         **params,
     ):
-        super(OpenAIObject, self).__init__()
+        super(ApacAIObject, self).__init__()
 
         if response_ms is not None and not isinstance(response_ms, int):
             raise TypeError(f"response_ms is a {type(response_ms).__name__}.")
@@ -47,7 +47,7 @@ class OpenAIObject(dict):
 
     def __setattr__(self, k, v):
         if k[0] == "_" or k in self.__dict__:
-            return super(OpenAIObject, self).__setattr__(k, v)
+            return super(ApacAIObject, self).__setattr__(k, v)
 
         self[k] = v
         return None
@@ -62,7 +62,7 @@ class OpenAIObject(dict):
 
     def __delattr__(self, k):
         if k[0] == "_" or k in self.__dict__:
-            return super(OpenAIObject, self).__delattr__(k)
+            return super(ApacAIObject, self).__delattr__(k)
         else:
             del self[k]
 
@@ -73,7 +73,7 @@ class OpenAIObject(dict):
                 "We interpret empty strings as None in requests."
                 "You may set %s.%s = None to delete the property" % (k, str(self), k)
             )
-        super(OpenAIObject, self).__setitem__(k, v)
+        super(ApacAIObject, self).__setitem__(k, v)
 
     def __delitem__(self, k):
         raise NotImplementedError("del is not supported")
@@ -146,7 +146,7 @@ class OpenAIObject(dict):
         # Wipe old state before setting new.
         self.clear()
         for k, v in values.items():
-            super(OpenAIObject, self).__setitem__(
+            super(ApacAIObject, self).__setitem__(
                 k, util.convert_to_openai_object(v, api_key, api_version, organization)
             )
 
@@ -187,7 +187,7 @@ class OpenAIObject(dict):
         )
 
         if stream:
-            assert not isinstance(response, OpenAIResponse)  # must be an iterator
+            assert not isinstance(response, ApacAIResponse)  # must be an iterator
             return (
                 util.convert_to_openai_object(
                     line,
@@ -238,7 +238,7 @@ class OpenAIObject(dict):
         )
 
         if stream:
-            assert not isinstance(response, OpenAIResponse)  # must be an iterator
+            assert not isinstance(response, ApacAIResponse)  # must be an iterator
             return (
                 util.convert_to_openai_object(
                     line,
@@ -286,11 +286,11 @@ class OpenAIObject(dict):
     def to_dict_recursive(self):
         d = dict(self)
         for k, v in d.items():
-            if isinstance(v, OpenAIObject):
+            if isinstance(v, ApacAIObject):
                 d[k] = v.to_dict_recursive()
             elif isinstance(v, list):
                 d[k] = [
-                    e.to_dict_recursive() if isinstance(e, OpenAIObject) else e
+                    e.to_dict_recursive() if isinstance(e, ApacAIObject) else e
                     for e in v
                 ]
         return d
@@ -313,7 +313,7 @@ class OpenAIObject(dict):
     # if it was set to be set manually. Here we override the class' copy
     # arguments so that we can bypass these possible exceptions on __setitem__.
     def __copy__(self):
-        copied = OpenAIObject(
+        copied = ApacAIObject(
             self.get("id"),
             self.api_key,
             api_version=self.api_version,
@@ -326,7 +326,7 @@ class OpenAIObject(dict):
         for k, v in self.items():
             # Call parent's __setitem__ to avoid checks that we've added in the
             # overridden version that can throw exceptions.
-            super(OpenAIObject, copied).__setitem__(k, v)
+            super(ApacAIObject, copied).__setitem__(k, v)
 
         return copied
 
@@ -342,6 +342,6 @@ class OpenAIObject(dict):
         for k, v in self.items():
             # Call parent's __setitem__ to avoid checks that we've added in the
             # overridden version that can throw exceptions.
-            super(OpenAIObject, copied).__setitem__(k, deepcopy(v, memo))
+            super(ApacAIObject, copied).__setitem__(k, deepcopy(v, memo))
 
         return copied

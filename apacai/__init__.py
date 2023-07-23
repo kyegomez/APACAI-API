@@ -32,7 +32,7 @@ from apacai.api_resources import (
     Model,
     Moderation,
 )
-from apacai.error import APIError, InvalidRequestError, OpenAIError
+from apacai.error import APIError, InvalidRequestError, ApacAIError
 from apacai.version import VERSION
 
 if TYPE_CHECKING:
@@ -87,7 +87,7 @@ __all__ = [
     "InvalidRequestError",
     "Model",
     "Moderation",
-    "OpenAIError",
+    "ApacAIError",
     "api_base",
     "api_key",
     "api_type",

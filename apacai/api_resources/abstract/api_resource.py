@@ -2,12 +2,12 @@ from urllib.parse import quote_plus
 
 import apacai
 from apacai import api_requestor, error, util
-from apacai.openai_object import OpenAIObject
+from apacai.openai_object import ApacAIObject
 from apacai.util import ApiType
 from typing import Optional
 
 
-class APIResource(OpenAIObject):
+class APIResource(ApacAIObject):
     api_prefix = ""
     azure_api_prefix = "apacai"
     azure_deployments_prefix = "deployments"

@@ -1,7 +1,7 @@
-from apacai.openai_object import OpenAIObject
+from apacai.openai_object import ApacAIObject
 
 
-class Customer(OpenAIObject):
+class Customer(ApacAIObject):
     @classmethod
     def get_url(cls, customer, endpoint):
         return f"/customer/{customer}/{endpoint}"

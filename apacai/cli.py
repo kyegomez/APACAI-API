@@ -507,7 +507,7 @@ class FineTune:
     @classmethod
     def events(cls, args):
         if args.stream:
-            raise apacai.error.OpenAIError(
+            raise apacai.error.ApacAIError(
                 message=(
                     "The --stream parameter is deprecated, use fine_tunes.follow "
                     "instead:\n\n"

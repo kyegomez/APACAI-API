@@ -7,7 +7,7 @@ from apacai.api_resources.abstract import (
     nested_resource_class_methods,
 )
 from apacai.api_resources.abstract.deletable_api_resource import DeletableAPIResource
-from apacai.openai_response import OpenAIResponse
+from apacai.openai_response import ApacAIResponse
 from apacai.util import ApiType
 
 
@@ -154,7 +154,7 @@ class FineTune(ListableAPIResource, CreateableAPIResource, DeletableAPIResource)
             "get", url, params, stream=True, request_id=request_id
         )
 
-        assert not isinstance(response, OpenAIResponse)  # must be an iterator
+        assert not isinstance(response, ApacAIResponse)  # must be an iterator
         return (
             util.convert_to_openai_object(
                 line,
@@ -192,7 +192,7 @@ class FineTune(ListableAPIResource, CreateableAPIResource, DeletableAPIResource)
             "get", url, params, stream=True, request_id=request_id
         )
 
-        assert not isinstance(response, OpenAIResponse)  # must be an iterator
+        assert not isinstance(response, ApacAIResponse)  # must be an iterator
         return (
             util.convert_to_openai_object(
                 line,

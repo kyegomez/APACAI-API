@@ -1,10 +1,10 @@
 from typing import Optional
 
-from apacai.openai_object import OpenAIObject
+from apacai.openai_object import ApacAIObject
 from apacai.util import merge_dicts
 
 
-class ErrorObject(OpenAIObject):
+class ErrorObject(ApacAIObject):
     def refresh_from(
         self,
         values,

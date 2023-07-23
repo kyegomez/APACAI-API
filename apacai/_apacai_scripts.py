@@ -76,7 +76,7 @@ def main():
 
     try:
         args.func(args)
-    except apacai.error.OpenAIError as e:
+    except apacai.error.ApacAIError as e:
         display_error(e)
         return 1
     except KeyboardInterrupt:

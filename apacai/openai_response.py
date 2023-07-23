@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-class OpenAIResponse:
+class ApacAIResponse:
     def __init__(self, data, headers):
         self._headers = headers
         self.data = data
