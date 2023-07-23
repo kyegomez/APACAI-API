@@ -1,6 +1,32 @@
+[tool.poetry]
+name = "apacai"
+version = "0.1.0"
+description = "Python client library for the APACAI API"
+authors = ["APACAI kye@apac.ai"]
+homepage = "https://github.com/kyegomez/APACAI-API.git"
+license = "MIT"
+
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = "^3.7.1"
+requests = ">=2.20"
+tqdm = "*"
+typing-extensions = {version = "*", python = "<3.8"}
+aiohttp = "*"
+
+[tool.poetry.dev-dependencies]
+black = "~=21.6b0"
+pytest = "==6.*"
+pytest-asyncio = "*"
+pytest-mock = "*"
+
+[tool.poetry.extras]
+datalib = ["numpy", "pandas>=1.2.3", "pandas-stubs>=1.1.0.11", "openpyxl>=3.0.7"]
+wandb = ["wandb", "numpy", "pandas>=1.2.3", "pandas-stubs>=1.1.0.11", "openpyxl>=3.0.7"]
+embeddings = ["scikit-learn>=1.0.2", "tenacity>=8.0.1", "matplotlib", "plotly", "numpy", "scipy", "pandas>=1.2.3", "pandas-stubs>=1.1.0.11", "openpyxl>=3.0.7"]
 
 [tool.black]
 target-version = ['py36']
