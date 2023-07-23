@@ -18,20 +18,20 @@ def api_key_file():
         apacai.api_key_path = saved_path
 
 
-def test_openai_api_key_path(api_key_file) -> None:
+def test_apacai_api_key_path(api_key_file) -> None:
     print("sk-foo", file=api_key_file)
     api_key_file.flush()
     assert util.default_api_key() == "sk-foo"
 
 
-def test_openai_api_key_path_with_malformed_key(api_key_file) -> None:
+def test_apacai_api_key_path_with_malformed_key(api_key_file) -> None:
     print("malformed-api-key", file=api_key_file)
     api_key_file.flush()
     with pytest.raises(ValueError, match="Malformed API key"):
         util.default_api_key()
 
 
-def test_key_order_openai_object_rendering() -> None:
+def test_key_order_apacai_object_rendering() -> None:
     sample_response = {
         "id": "chatcmpl-7NaPEA6sgX7LnNPyKPbRlsyqLbr5V",
         "object": "chat.completion",
@@ -50,6 +50,6 @@ def test_key_order_openai_object_rendering() -> None:
         ],
     }
 
-    oai_object = util.convert_to_openai_object(sample_response)
+    oai_object = util.convert_to_apacai_object(sample_response)
     # The `__str__` method was sorting while dumping to json
     assert list(json.loads(str(oai_object)).keys()) == list(sample_response.keys())

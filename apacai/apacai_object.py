@@ -4,7 +4,7 @@ from typing import Optional, Tuple, Union
 
 import apacai
 from apacai import api_requestor, util
-from apacai.openai_response import ApacAIResponse
+from apacai.apacai_response import ApacAIResponse
 from apacai.util import ApiType
 
 
@@ -147,7 +147,7 @@ class ApacAIObject(dict):
         self.clear()
         for k, v in values.items():
             super(ApacAIObject, self).__setitem__(
-                k, util.convert_to_openai_object(v, api_key, api_version, organization)
+                k, util.convert_to_apacai_object(v, api_key, api_version, organization)
             )
 
         self._previous = values
@@ -189,7 +189,7 @@ class ApacAIObject(dict):
         if stream:
             assert not isinstance(response, ApacAIResponse)  # must be an iterator
             return (
-                util.convert_to_openai_object(
+                util.convert_to_apacai_object(
                     line,
                     api_key,
                     self.api_version,
@@ -199,7 +199,7 @@ class ApacAIObject(dict):
                 for line in response
             )
         else:
-            return util.convert_to_openai_object(
+            return util.convert_to_apacai_object(
                 response,
                 api_key,
                 self.api_version,
@@ -240,7 +240,7 @@ class ApacAIObject(dict):
         if stream:
             assert not isinstance(response, ApacAIResponse)  # must be an iterator
             return (
-                util.convert_to_openai_object(
+                util.convert_to_apacai_object(
                     line,
                     api_key,
                     self.api_version,
@@ -250,7 +250,7 @@ class ApacAIObject(dict):
                 for line in response
             )
         else:
-            return util.convert_to_openai_object(
+            return util.convert_to_apacai_object(
                 response,
                 api_key,
                 self.api_version,
@@ -296,7 +296,7 @@ class ApacAIObject(dict):
         return d
 
     @property
-    def openai_id(self):
+    def apacai_id(self):
         return self.id
 
     @property

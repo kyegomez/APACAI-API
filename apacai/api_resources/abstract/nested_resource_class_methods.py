@@ -43,7 +43,7 @@ def _nested_resource_class_methods(
             response, _, api_key = requestor.request(
                 method, url, params, request_id=request_id
             )
-            return util.convert_to_openai_object(
+            return util.convert_to_apacai_object(
                 response, api_key, api_version, organization
             )
 
@@ -63,7 +63,7 @@ def _nested_resource_class_methods(
             response, _, api_key = await requestor.arequest(
                 method, url, params, request_id=request_id
             )
-            return util.convert_to_openai_object(
+            return util.convert_to_apacai_object(
                 response, api_key, api_version, organization
             )
 

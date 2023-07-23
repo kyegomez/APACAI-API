@@ -65,7 +65,7 @@ class Audio(APIResource):
         )
         url = cls._get_url("transcriptions")
         response, _, api_key = requestor.request("post", url, files=files, params=data)
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -94,7 +94,7 @@ class Audio(APIResource):
         )
         url = cls._get_url("translations")
         response, _, api_key = requestor.request("post", url, files=files, params=data)
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -124,7 +124,7 @@ class Audio(APIResource):
         )
         url = cls._get_url("transcriptions")
         response, _, api_key = requestor.request("post", url, files=files, params=data)
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -154,7 +154,7 @@ class Audio(APIResource):
         )
         url = cls._get_url("translations")
         response, _, api_key = requestor.request("post", url, files=files, params=data)
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -185,7 +185,7 @@ class Audio(APIResource):
         response, _, api_key = await requestor.arequest(
             "post", url, files=files, params=data
         )
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -216,7 +216,7 @@ class Audio(APIResource):
         response, _, api_key = await requestor.arequest(
             "post", url, files=files, params=data
         )
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -248,7 +248,7 @@ class Audio(APIResource):
         response, _, api_key = await requestor.arequest(
             "post", url, files=files, params=data
         )
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -280,6 +280,6 @@ class Audio(APIResource):
         response, _, api_key = await requestor.arequest(
             "post", url, files=files, params=data
         )
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )

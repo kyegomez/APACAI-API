@@ -1,6 +1,6 @@
 from typing import List, Optional, Union
 
-from apacai.openai_object import ApacAIObject
+from apacai.apacai_object import ApacAIObject
 
 
 class Moderation(ApacAIObject):

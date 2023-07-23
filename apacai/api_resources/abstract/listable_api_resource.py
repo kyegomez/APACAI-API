@@ -60,11 +60,11 @@ class ListableAPIResource(APIResource):
         response, _, api_key = requestor.request(
             "get", url, params, request_id=request_id
         )
-        openai_object = util.convert_to_openai_object(
+        apacai_object = util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
-        openai_object._retrieve_params = params
-        return openai_object
+        apacai_object._retrieve_params = params
+        return apacai_object
 
     @classmethod
     async def alist(
@@ -88,8 +88,8 @@ class ListableAPIResource(APIResource):
         response, _, api_key = await requestor.arequest(
             "get", url, params, request_id=request_id
         )
-        openai_object = util.convert_to_openai_object(
+        apacai_object = util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
-        openai_object._retrieve_params = params
-        return openai_object
+        apacai_object._retrieve_params = params
+        return apacai_object

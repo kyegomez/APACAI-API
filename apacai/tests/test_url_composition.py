@@ -124,7 +124,7 @@ def test_completions_url_composition_instance_url_timeout_azure() -> None:
 
 
 @pytest.mark.url
-def test_completions_url_composition_instance_url_timeout_openai() -> None:
+def test_completions_url_composition_instance_url_timeout_apacai() -> None:
     completion = Completion(id="test_id", engine="test_engine", api_type="open_ai")
     completion["timeout"] = 12
     url = completion.instance_url()

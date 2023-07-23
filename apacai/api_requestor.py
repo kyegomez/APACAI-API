@@ -31,7 +31,7 @@ else:
 
 import apacai
 from apacai import error, util, version
-from apacai.openai_response import ApacAIResponse
+from apacai.apacai_response import ApacAIResponse
 from apacai.util import ApiType
 
 TIMEOUT_SECS = 600

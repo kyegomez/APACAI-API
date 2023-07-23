@@ -1,6 +1,6 @@
 from typing import Optional
 
-from apacai.openai_object import ApacAIObject
+from apacai.apacai_object import ApacAIObject
 from apacai.util import merge_dicts
 
 

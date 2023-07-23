@@ -82,7 +82,7 @@ class File(ListableAPIResource, DeletableAPIResource):
             user_provided_filename,
         )
         response, _, api_key = requestor.request("post", url, files=files)
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 
@@ -111,7 +111,7 @@ class File(ListableAPIResource, DeletableAPIResource):
             user_provided_filename,
         )
         response, _, api_key = await requestor.arequest("post", url, files=files)
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 

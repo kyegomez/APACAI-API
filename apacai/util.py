@@ -98,7 +98,7 @@ def get_object_classes():
     return OBJECT_CLASSES
 
 
-def convert_to_openai_object(
+def convert_to_apacai_object(
     resp,
     api_key=None,
     api_version=None,
@@ -109,7 +109,7 @@ def convert_to_openai_object(
     # If we get a ApacAIResponse, we'll want to return a ApacAIObject.
 
     response_ms: Optional[int] = None
-    if isinstance(resp, apacai.openai_response.ApacAIResponse):
+    if isinstance(resp, apacai.apacai_response.ApacAIResponse):
         organization = resp.organization
         response_ms = resp.response_ms
         resp = resp.data
@@ -118,22 +118,22 @@ def convert_to_openai_object(
         return resp
     elif isinstance(resp, list):
         return [
-            convert_to_openai_object(
+            convert_to_apacai_object(
                 i, api_key, api_version, organization, engine=engine
             )
             for i in resp
         ]
     elif isinstance(resp, dict) and not isinstance(
-        resp, apacai.openai_object.ApacAIObject
+        resp, apacai.apacai_object.ApacAIObject
     ):
         resp = resp.copy()
         klass_name = resp.get("object")
         if isinstance(klass_name, str):
             klass = get_object_classes().get(
-                klass_name, apacai.openai_object.ApacAIObject
+                klass_name, apacai.apacai_object.ApacAIObject
             )
         else:
-            klass = apacai.openai_object.ApacAIObject
+            klass = apacai.apacai_object.ApacAIObject
 
         return klass.construct_from(
             resp,

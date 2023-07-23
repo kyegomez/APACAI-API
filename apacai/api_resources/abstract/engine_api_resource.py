@@ -6,7 +6,7 @@ from urllib.parse import quote_plus
 import apacai
 from apacai import api_requestor, error, util
 from apacai.api_resources.abstract.api_resource import APIResource
-from apacai.openai_response import ApacAIResponse
+from apacai.apacai_response import ApacAIResponse
 from apacai.util import ApiType
 
 MAX_TIMEOUT = 20
@@ -164,7 +164,7 @@ class EngineAPIResource(APIResource):
             # must be an iterator
             assert not isinstance(response, ApacAIResponse)
             return (
-                util.convert_to_openai_object(
+                util.convert_to_apacai_object(
                     line,
                     api_key,
                     api_version,
@@ -175,7 +175,7 @@ class EngineAPIResource(APIResource):
                 for line in response
             )
         else:
-            obj = util.convert_to_openai_object(
+            obj = util.convert_to_apacai_object(
                 response,
                 api_key,
                 api_version,
@@ -228,7 +228,7 @@ class EngineAPIResource(APIResource):
             # must be an iterator
             assert not isinstance(response, ApacAIResponse)
             return (
-                util.convert_to_openai_object(
+                util.convert_to_apacai_object(
                     line,
                     api_key,
                     api_version,
@@ -239,7 +239,7 @@ class EngineAPIResource(APIResource):
                 async for line in response
             )
         else:
-            obj = util.convert_to_openai_object(
+            obj = util.convert_to_apacai_object(
                 response,
                 api_key,
                 api_version,

@@ -2,7 +2,7 @@ from urllib.parse import quote_plus
 
 import apacai
 from apacai import api_requestor, error, util
-from apacai.openai_object import ApacAIObject
+from apacai.apacai_object import ApacAIObject
 from apacai.util import ApiType
 from typing import Optional
 
@@ -130,7 +130,7 @@ class APIResource(ApacAIObject):
         response, _, api_key = requestor.request(
             method_, url_, params, request_id=request_id
         )
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response, api_key, api_version, organization
         )
 

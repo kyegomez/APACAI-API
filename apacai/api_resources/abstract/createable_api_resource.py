@@ -58,7 +58,7 @@ class CreateableAPIResource(APIResource):
             "post", url, params, request_id=request_id
         )
 
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response,
             api_key,
             api_version,
@@ -89,7 +89,7 @@ class CreateableAPIResource(APIResource):
             "post", url, params, request_id=request_id
         )
 
-        return util.convert_to_openai_object(
+        return util.convert_to_apacai_object(
             response,
             api_key,
             api_version,
