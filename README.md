@@ -8,6 +8,16 @@ with a wide range of versions of the APACAI API.
 
 You can find usage examples for the APACAI Python library in our [API reference](https://beta.apacai.com/docs/api-reference?lang=python) and the [APACAI Cookbook](https://github.com/apacai/apacai-cookbook/).
 
+# Roadmap:
+
+* Integrate Andromeda
+
+* Integrate Kosmos
+
+* Integrate Swarms
+
+
+
 ## Installation
 
 You don't need this source code unless you want to modify the package. If you just
