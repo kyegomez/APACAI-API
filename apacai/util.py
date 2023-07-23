@@ -7,7 +7,7 @@ from typing import Optional
 
 import apacai
 
-OPENAI_LOG = os.environ.get("OPENAI_LOG")
+APACAI_LOG = os.environ.get("APACAI_LOG")
 
 logger = logging.getLogger("apacai")
 
@@ -47,8 +47,8 @@ class ApiType(Enum):
 def _console_log_level():
     if apacai.log in ["debug", "info"]:
         return apacai.log
-    elif OPENAI_LOG in ["debug", "info"]:
-        return OPENAI_LOG
+    elif APACAI_LOG in ["debug", "info"]:
+        return APACAI_LOG
     else:
         return None
 
@@ -184,5 +184,5 @@ def default_api_key() -> str:
         return apacai.api_key
     else:
         raise apacai.error.AuthenticationError(
-            "No API key provided. You can set your API key in code using 'apacai.api_key = <API-KEY>', or you can set the environment variable OPENAI_API_KEY=<API-KEY>). If your API key is stored in a file, you can point the apacai module at it with 'apacai.api_key_path = <PATH>'. You can generate API keys in the APACAI web interface. See https://platform.apacai.com/account/api-keys for details."
+            "No API key provided. You can set your API key in code using 'apacai.api_key = <API-KEY>', or you can set the environment variable APACAI_API_KEY=<API-KEY>). If your API key is stored in a file, you can point the apacai module at it with 'apacai.api_key_path = <PATH>'. You can generate API keys in the APACAI web interface. See https://platform.apacai.com/account/api-keys for details."
         )

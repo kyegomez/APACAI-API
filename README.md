@@ -45,10 +45,10 @@ pip install apacai[datalib]
 
 ## Usage
 
-The library needs to be configured with your account's secret key which is available on the [website](https://platform.apacai.com/account/api-keys). Either set it as the `OPENAI_API_KEY` environment variable before using the library:
+The library needs to be configured with your account's secret key which is available on the [website](https://platform.apacai.com/account/api-keys). Either set it as the `APACAI_API_KEY` environment variable before using the library:
 
 ```bash
-export OPENAI_API_KEY='sk-...'
+export APACAI_API_KEY='sk-...'
 ```
 
 Or set `apacai.api_key` to its value:

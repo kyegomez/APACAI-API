@@ -39,17 +39,17 @@ if TYPE_CHECKING:
     import requests
     from aiohttp import ClientSession
 
-api_key = os.environ.get("OPENAI_API_KEY")
+api_key = os.environ.get("APACAI_API_KEY")
 # Path of a file with an API key, whose contents can change. Supercedes
 # `api_key` if set.  The main use case is volume-mounted Kubernetes secrets,
 # which are updated automatically.
-api_key_path: Optional[str] = os.environ.get("OPENAI_API_KEY_PATH")
+api_key_path: Optional[str] = os.environ.get("APACAI_API_KEY_PATH")
 
-organization = os.environ.get("OPENAI_ORGANIZATION")
-api_base = os.environ.get("OPENAI_API_BASE", "https://api.apacai.com/v1")
-api_type = os.environ.get("OPENAI_API_TYPE", "open_ai")
+organization = os.environ.get("APACAI_ORGANIZATION")
+api_base = os.environ.get("APACAI_API_BASE", "https://api.apacai.com/v1")
+api_type = os.environ.get("APACAI_API_TYPE", "open_ai")
 api_version = os.environ.get(
-    "OPENAI_API_VERSION",
+    "APACAI_API_VERSION",
     ("2023-05-15" if api_type in ("azure", "azure_ad", "azuread") else None),
 )
 verify_ssl_certs = True  # No effect. Certificates are always verified.
