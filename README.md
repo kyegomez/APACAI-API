@@ -8,13 +8,6 @@ with a wide range of versions of the APACAI API.
 
 You can find usage examples for the APACAI Python library in our [API reference](https://beta.apacai.com/docs/api-reference?lang=python) and the [APACAI Cookbook](https://github.com/apacai/apacai-cookbook/).
 
-* Example
-
-```python
-from apacai import Andromeda
-
-Andromeda("Create a report on these metrics", api_key="sk-lee2e829382983")
-```
 
 ## Installation
 
